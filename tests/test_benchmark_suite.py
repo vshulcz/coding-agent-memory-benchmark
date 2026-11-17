@@ -16,6 +16,9 @@ SCRIPTS_DIR = ROOT / "scripts"
 RESULTS_DIR = ROOT / "results"
 sys.path.insert(0, str(SCRIPTS_DIR))
 
+import build_hf_dataset  # noqa: E402
+import create_wikidata_item  # noqa: E402
+import publish_hf_dataset  # noqa: E402
 import score_longmemeval  # noqa: E402
 import verify_artifacts  # noqa: E402
 
@@ -150,6 +153,50 @@ class BenchmarkSuiteTests(unittest.TestCase):
             self.assertEqual(payload["tools"], 2)
             self.assertGreater(payload["bytes"], 50)
             self.assertEqual(payload["encoding"], "o200k_base")
+
+    def test_citation_and_zenodo_metadata_match(self) -> None:
+        cff = (ROOT / "CITATION.cff").read_text(encoding="utf-8")
+        zenodo = json.loads((ROOT / ".zenodo.json").read_text(encoding="utf-8"))
+        self.assertEqual(zenodo["upload_type"], "dataset")
+        self.assertEqual(zenodo["license"], "MIT")
+        self.assertEqual(zenodo["version"], "1.0.0")
+        self.assertIn("version: \"1.0.0\"", cff)
+        self.assertIn("license: MIT", cff)
+        self.assertIn("https://github.com/vshulcz/deja-vu", cff)
+        related = {item["identifier"]: item["relation"] for item in zenodo["related_identifiers"]}
+        self.assertEqual(related.get("https://github.com/vshulcz/deja-vu"), "isSupplementTo")
+
+    def test_build_hf_dataset_contains_no_locomo_dialogue_text(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            out_dir = Path(tmpdir) / "hf_dataset"
+            counts = build_hf_dataset.build_dataset(RESULTS_DIR, out_dir)
+            self.assertEqual(counts["longmemeval_slices.jsonl"], 14)
+            self.assertEqual(counts["locomo_retrieval_metrics.jsonl"], 6)
+            self.assertEqual(counts["day_zero_tools.jsonl"], 7)
+            self.assertEqual(counts["task_cost_and_compaction.jsonl"], 10)
+            validated = publish_hf_dataset.validate_bundle(out_dir)
+            self.assertEqual(sum(validated.values()), 37)
+            locomo_lines = (out_dir / "data" / "locomo_retrieval_metrics.jsonl").read_text(encoding="utf-8").splitlines()
+            for line in locomo_lines:
+                row = json.loads(line)
+                self.assertEqual(row["benchmark"], "LoCoMo")
+                self.assertFalse(build_hf_dataset.FORBIDDEN_TEXT_KEYS & {k.lower() for k in row})
+
+        self.assertEqual(publish_hf_dataset.main(["--dry-run"]), 0)
+
+    def test_wikidata_payload_and_quickstatements(self) -> None:
+        qs_path = ROOT / "wikidata" / "quickstatements_deja_vu.txt"
+        qs_lines = [ln for ln in qs_path.read_text(encoding="utf-8").splitlines() if ln.strip()]
+        self.assertEqual(qs_lines[0], "CREATE")
+        self.assertTrue(any("\tP31\tQ341\t" in ln for ln in qs_lines))
+        self.assertTrue(any("\tP275\tQ334661\t" in ln for ln in qs_lines))
+        self.assertTrue(any("\tP277\tQ37227\t" in ln for ln in qs_lines))
+        self.assertNotIn("P5568", "\n".join(qs_lines))
+
+        payload = create_wikidata_item.build_entity_payload(zenodo_doi="10.5281/zenodo.999999")
+        self.assertEqual(payload["claims"]["P356"][0]["mainsnak"]["datavalue"]["value"], "10.5281/ZENODO.999999")
+        self.assertNotIn("P5568", payload["claims"])
+        self.assertEqual(create_wikidata_item.main(["--dry-run"]), 0)
 
 
 if __name__ == "__main__":

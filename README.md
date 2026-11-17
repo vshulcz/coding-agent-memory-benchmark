@@ -113,7 +113,15 @@ python3 scripts/score_longmemeval.py \
 python3 scripts/measure_mcp_schema_tokens.py -- deja mcp
 # or without tiktoken installed:
 python3 scripts/measure_mcp_schema_tokens.py --bytes-only -- deja mcp
+
+# 5. Rebuild normalized Hugging Face dataset splits under hf_dataset/
+python3 scripts/build_hf_dataset.py
 ```
+
+## Dataset Bundle & Citation
+
+- **Normalized JSONL splits (`hf_dataset/`):** Built deterministically from `results/*.json` with [`scripts/build_hf_dataset.py`](scripts/build_hf_dataset.py) and publishable with `HF_HUB_DISABLE_XET=1` via [`scripts/publish_hf_dataset.py`](scripts/publish_hf_dataset.py). Excludes all raw `LoCoMo` dialogue text.
+- **Citation metadata:** [`CITATION.cff`](CITATION.cff) and [`.zenodo.json`](.zenodo.json) record the exact benchmark snapshot (`0.23.2` / `54f6f6ab` / `9906e203`) and link back to [`vshulcz/deja-vu`](https://github.com/vshulcz/deja-vu).
 
 ## License
 

@@ -1,0 +1,37 @@
+cff-version: 1.2.0
+message: "If you use this benchmark dataset or scoring suite, please cite it using the metadata below."
+title: "Coding Agent Memory Benchmark: LongMemEval-S, LoCoMo, and 19,195-Session Day-Zero Evaluation"
+type: dataset
+version: "1.0.0"
+date-released: "2026-11-18"
+license: MIT
+repository-code: "https://github.com/vshulcz/coding-agent-memory-benchmark"
+url: "https://vshulcz.github.io/deja-vu/guide/benchmarks.html"
+abstract: >-
+  Reproducible JSON evaluation artifacts, summary metrics, and Python standard-library
+  scoring and verification scripts for local AI coding-agent memory and session search
+  systems. Covers LongMemEval-S (500 full and 470 cleaned questions), LoCoMo retrieval-only
+  metrics (1,982 questions, no dialogue text redistributed), a 19,195-session day-zero
+  comparison across seven tools (deja-vu 0.23.2, ctx, CASS, agentsview, agentmemory,
+  MemPalace, and claude-mem), MCP tools/list schema overhead, 43 real context
+  compactions, and 11-run alternating task-cost ablations.
+authors:
+  - name: "vshulcz"
+keywords:
+  - coding-agents
+  - agent-memory
+  - information-retrieval
+  - bm25
+  - benchmark
+  - model-context-protocol
+  - longmemeval
+  - locomo
+references:
+  - type: software
+    title: "deja-vu"
+    authors:
+      - name: "vshulcz"
+    repository-code: "https://github.com/vshulcz/deja-vu"
+    url: "https://vshulcz.github.io/deja-vu/"
+    license: MIT
+    version: "0.23.2"

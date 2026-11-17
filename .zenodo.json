@@ -1,0 +1,46 @@
+{
+  "title": "Coding Agent Memory Benchmark: LongMemEval-S, LoCoMo, and 19,195-Session Day-Zero Evaluation",
+  "description": "<p>Reproducible evaluation artifacts, summary tables, and standalone Python scoring scripts for local AI coding-agent memory and session search tools.</p><ul><li><strong>LongMemEval-S</strong>: 470 cleaned questions (88.9% hit@1, 97.4% hit@5, 0.926 MRR) and 500 full questions (88.2% hit@1, 97.2% hit@5, 0.921 MRR), run with <code>deja-vu</code> 0.23.2 without LLM query rewriting or embeddings.</li><li><strong>LoCoMo (retrieval-only metrics)</strong>: 1,982 questions (71.9% hit@1, 91.4% hit@5, 0.802 MRR); reports retrieval metrics only and redistributes no upstream CC-BY-NC-4.0 dialogue text.</li><li><strong>Day-Zero Cold Start (19,195 sessions on disk)</strong>: head-to-head comparison of seven tools (<code>deja-vu</code>, <code>ctx</code>, <code>CASS</code>, <code>agentsview</code>, <code>agentmemory</code>, <code>MemPalace</code>, <code>claude-mem</code>) covering index build time, search latency, hit@k, and standing MCP <code>tools/list</code> schema overhead (measured against <code>deja-vu</code> 0.23.2 / commit <code>9906e203</code>).</li><li><strong>Task-Cost &amp; Compaction Ablations</strong>: 11-run alternating repository tasks (commit <code>54f6f6ab</code>), multi-session context readiness chains, and 43 real context compactions.</li></ul>",
+  "upload_type": "dataset",
+  "license": "MIT",
+  "version": "1.0.0",
+  "publication_date": "2026-11-18",
+  "access_right": "open",
+  "creators": [
+    {
+      "name": "vshulcz"
+    }
+  ],
+  "keywords": [
+    "coding-agents",
+    "agent-memory",
+    "information-retrieval",
+    "bm25",
+    "benchmark",
+    "model-context-protocol",
+    "longmemeval",
+    "locomo",
+    "claude-code",
+    "codex"
+  ],
+  "related_identifiers": [
+    {
+      "identifier": "https://github.com/vshulcz/deja-vu",
+      "relation": "isSupplementTo",
+      "resource_type": "software",
+      "scheme": "url"
+    },
+    {
+      "identifier": "https://vshulcz.github.io/deja-vu/guide/benchmarks.html",
+      "relation": "isDocumentedBy",
+      "resource_type": "publication-technicalnote",
+      "scheme": "url"
+    },
+    {
+      "identifier": "https://vshulcz.github.io/deja-vu/guide/day-zero.html",
+      "relation": "isDocumentedBy",
+      "resource_type": "publication-technicalnote",
+      "scheme": "url"
+    }
+  ]
+}
