@@ -1,0 +1,73 @@
+{
+  "benchmark": "LoCoMo",
+  "harness": "scripts/locomo",
+  "run_at": "2026-10-28",
+  "dataset": {
+    "name": "locomo10.json",
+    "bytes": 2805274,
+    "sha256": "79fa87e90f04081343b8c8debecb80a9a6842b76a7aa537dc9fdf651ea698ff4"
+  },
+  "questions": 1982,
+  "wall_seconds": 8.083805083,
+  "median_search_ms": 3.481,
+  "rows": [
+    {
+      "name": "multi-hop",
+      "n": 282,
+      "hit@1": 50.709219858156025,
+      "hit@5": 86.52482269503547,
+      "hit@10": 93.26241134751773,
+      "hit@20": 95.74468085106383,
+      "mrr": 0.6518391278033263
+    },
+    {
+      "name": "temporal",
+      "n": 321,
+      "hit@1": 69.78193146417445,
+      "hit@5": 89.09657320872275,
+      "hit@10": 95.32710280373831,
+      "hit@20": 98.75389408099689,
+      "mrr": 0.7836335534626236
+    },
+    {
+      "name": "open-domain",
+      "n": 92,
+      "hit@1": 39.130434782608695,
+      "hit@5": 70.65217391304348,
+      "hit@10": 80.43478260869566,
+      "hit@20": 88.04347826086956,
+      "mrr": 0.5336766343559823
+    },
+    {
+      "name": "single-hop",
+      "n": 841,
+      "hit@1": 79.54815695600476,
+      "hit@5": 94.41141498216409,
+      "hit@10": 97.6218787158145,
+      "hit@20": 99.16765755053508,
+      "mrr": 0.859352622694583
+    },
+    {
+      "name": "adversarial*",
+      "n": 446,
+      "hit@1": 79.14798206278027,
+      "hit@5": 94.61883408071749,
+      "hit@10": 97.08520179372198,
+      "hit@20": 97.75784753363229,
+      "mrr": 0.8585044542344722
+    }
+  ],
+  "total": {
+    "name": "TOTAL",
+    "n": 1982,
+    "hit@1": 71.8970736629667,
+    "hit@5": 91.372351160444,
+    "hit@10": 95.71140262361251,
+    "hit@20": 97.78002018163471,
+    "mrr": 0.802256204509338
+  },
+  "notes": {
+    "adversarial": "category 5 is unanswerable by design and is reported as its own row",
+    "metric": "session-level retrieval through the production search ladder; no LLM answers a question"
+  }
+}
