@@ -1,0 +1,26 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Verify benchmark artifacts
+        run: python3 scripts/verify_artifacts.py
+      - name: Run unit tests
+        run: python3 -m unittest discover -s tests -v
+      - name: Audit agent memory stores with deja
+        uses: vshulcz/deja-vu@main
+        with:
+          args: audit --fail-on-secrets
