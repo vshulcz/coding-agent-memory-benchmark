@@ -37,7 +37,7 @@ configs:
 
 # Coding Agent Memory Benchmark
 
-Machine-readable summary splits generated from the verified JSON artifacts in [`vshulcz/coding-agent-memory-benchmark`](https://github.com/vshulcz/coding-agent-memory-benchmark) for [`vshulcz/deja-vu`](https://github.com/vshulcz/deja-vu).
+Machine-readable summary splits generated from the verified JSON artifacts in [`vshulcz/coding-agent-memory-benchmark`](https://github.com/vshulcz/coding-agent-memory-benchmark) (Zenodo archive: [`10.5281/zenodo.24416712`](https://doi.org/10.5281/zenodo.24416712)) for [`vshulcz/deja-vu`](https://github.com/vshulcz/deja-vu).
 
 > Disclosure: published and maintained by the author of `deja-vu`. Upstream datasets carry their own licenses (`LongMemEval`: MIT; `LoCoMo`: `CC-BY-NC-4.0`). To respect `LoCoMo`'s license, this dataset redistributes aggregate retrieval metrics and dataset digests only—no raw dialogue text or prompts are included.
 

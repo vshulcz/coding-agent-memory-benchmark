@@ -1,6 +1,7 @@
 # Coding Agent Memory Benchmark
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.24416712.svg)](https://doi.org/10.5281/zenodo.24416712)
+[![Hugging Face Dataset](https://img.shields.io/badge/Hugging%20Face-Dataset-ffd21e?logo=huggingface&logoColor=000)](https://huggingface.co/datasets/vshulcz/coding-agent-memory-benchmark)
 
 Reproducible evaluation artifacts, day-zero cold-start comparisons, and zero-dependency scoring scripts for local coding-agent memory and session search tools.
 
