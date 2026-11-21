@@ -3,6 +3,7 @@ message: "If you use this benchmark dataset or scoring suite, please cite it usi
 title: "Coding Agent Memory Benchmark: LongMemEval-S, LoCoMo, and 19,195-Session Day-Zero Evaluation"
 type: dataset
 version: "1.0.0"
+doi: "10.5281/zenodo.24416712"
 date-released: "2026-11-18"
 license: MIT
 repository-code: "https://github.com/vshulcz/coding-agent-memory-benchmark"

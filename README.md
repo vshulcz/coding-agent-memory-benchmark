@@ -1,5 +1,7 @@
 # Coding Agent Memory Benchmark
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.24416712.svg)](https://doi.org/10.5281/zenodo.24416712)
+
 Reproducible evaluation artifacts, day-zero cold-start comparisons, and zero-dependency scoring scripts for local coding-agent memory and session search tools.
 
 Every committed JSON result in [`results/`](results/) records the dataset filename, byte count, SHA-256 digest, flags, and exact per-slice metrics produced by the benchmark harnesses in [`vshulcz/deja-vu`](https://github.com/vshulcz/deja-vu).
